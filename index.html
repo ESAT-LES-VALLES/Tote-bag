@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tote Bag Recyclé — Traçabilité & Fabrication</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --dark: #2A2318;
+    --olive: #6B7840;
+    --rust: #B85C2A;
+    --sand: #D4C4A0;
+    --light-olive: #E8EDDA;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    background-color: var(--dark);
+    color: var(--cream);
+    padding: 72px 48px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: var(--olive);
+    opacity: 0.15;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin-bottom: 20px;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.1;
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--sand);
+  }
+  .hero-sub {
+    font-size: 15px;
+    line-height: 1.7;
+    opacity: 0.75;
+    max-width: 520px;
+    margin-top: 12px;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 32px;
+    background: var(--olive);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* MAIN CONTENT */
+  .main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 64px 32px;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 64px;
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 0.6s ease forwards;
+  }
+  .section:nth-child(1) { animation-delay: 0.1s; }
+  .section:nth-child(2) { animation-delay: 0.2s; }
+  .section:nth-child(3) { animation-delay: 0.3s; }
+  .section:nth-child(4) { animation-delay: 0.4s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .section-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--olive);
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  /* CARDS */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 560px) { .card-grid { grid-template-columns: 1fr; } }
+
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    border-left: 3px solid var(--olive);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(42,35,24,0.08);
+  }
+  .card-icon { font-size: 24px; margin-bottom: 10px; }
+  .card-name { font-weight: 500; font-size: 14px; margin-bottom: 6px; }
+  .card-detail { font-size: 13px; color: #666; line-height: 1.6; }
+  .card-tag {
+    display: inline-block;
+    margin-top: 10px;
+    background: var(--light-olive);
+    color: var(--olive);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+  }
+  .card-tag.rust {
+    background: #FAE8DE;
+    color: var(--rust);
+  }
+
+  /* STEPS */
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 20px;
+    position: relative;
+  }
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 23px; top: 40px; bottom: 0;
+    width: 2px;
+    background: var(--sand);
+  }
+  .step-dot {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 2px solid var(--sand);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .step-body { padding-bottom: 32px; }
+  .step-title { font-weight: 500; font-size: 15px; margin-bottom: 6px; }
+  .step-desc { font-size: 13px; color: #666; line-height: 1.6; }
+
+  /* ECO STATS */
+  .eco-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 560px) { .eco-grid { grid-template-columns: 1fr 1fr; } }
+
+  .eco-card {
+    background: var(--dark);
+    color: var(--cream);
+    border-radius: 12px;
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .eco-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-style: italic;
+    color: var(--sand);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .eco-label { font-size: 12px; opacity: 0.7; line-height: 1.5; }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--sand);
+    margin: 0 0 64px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    color: var(--sand);
+    text-align: center;
+    padding: 32px;
+    font-size: 13px;
+    opacity: 0.8;
+  }
+  footer strong {
+    color: white;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 4px;
+    font-size: 15px;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <p class="hero-eyebrow">Traçabilité · Fabrication responsable</p>
+  <h1 class="hero-title">Un tote bag<br><em>né d'une seconde vie</em></h1>
+  <p class="hero-sub">Ce sac est entièrement fabriqué à partir de matières récupérées et recyclées. Chaque pièce a une histoire — voici la leur.</p>
+  <div class="hero-badge">
+    <span>♻</span> 100 % matières recyclées
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- SECTION 1 : PROVENANCE -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">1</div>
+      <h2 class="section-title">Provenance des matières</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🏗️</div>
+        <div class="card-name">Bâches publicitaires</div>
+        <div class="card-detail">Récupérées auprès d'entreprises et d'agences d'affichage de la région Centre-Val de Loire, après la fin de leur campagne.</div>
+        <span class="card-tag">Région Centre-Val de Loire</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔩</div>
+        <div class="card-name">Ceintures de sécurité</div>
+        <div class="card-detail">Issues de véhicules hors d'usage, données par un garage mécanique partenaire. Elles forment les anses robustes du sac.</div>
+        <span class="card-tag rust">Don d'un garage local</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION 2 : COLLECTE & TRI -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">2</div>
+      <h2 class="section-title">Collecte & tri des matières</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-dot">📦</div>
+        <div class="step-body">
+          <div class="step-title">Récupération des bâches</div>
+          <div class="step-desc">Les bâches sont collectées en fin de campagne publicitaire, avant tout passage en déchetterie. Elles sont roulées et stockées dans notre atelier.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot">🔍</div>
+        <div class="step-body">
+          <div class="step-title">Inspection et sélection</div>
+          <div class="step-desc">Chaque bâche est examinée : on écarte les zones trop abîmées ou souillées. Les bonnes parties sont sélectionnées pour leur résistance et leur aspect visuel.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot">✂️</div>
+        <div class="step-body">
+          <div class="step-title">Nettoyage & préparation</div>
+          <div class="step-desc">Les ceintures de sécurité sont dégraissées, nettoyées, puis inspectées pour vérifier leur solidité. Les bâches sont nettoyées à sec ou essuyées selon les besoins.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION 3 : FABRICATION -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">3</div>
+      <h2 class="section-title">Étapes de fabrication</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-dot">📐</div>
+        <div class="step-body">
+          <div class="step-title">Patronage & tracé</div>
+          <div class="step-desc">Chaque sac est tracé à la main sur la bâche selon un gabarit standardisé. La disposition est optimisée pour limiter les chutes.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot">✂️</div>
+        <div class="step-body">
+          <div class="step-title">Découpe</div>
+          <div class="step-desc">Les pièces sont découpées au cutter ou aux ciseaux renforcés. Corps, doublure éventuelle, et marges de couture sont respectés.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot">🧵</div>
+        <div class="step-body">
+          <div class="step-title">Couture</div>
+          <div class="step-desc">Le sac est cousu à la machine industrielle. Les coutures sont renforcées aux points de tension — notamment les attaches d'anses.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot">🪢</div>
+        <div class="step-body">
+          <div class="step-title">Fixation des anses</div>
+          <div class="step-desc">Les ceintures de sécurité récupérées sont coupées à longueur, puis cousues et rivetées sur le corps du sac pour garantir leur solidité.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-dot">✅</div>
+        <div class="step-body">
+          <div class="step-title">Contrôle final</div>
+          <div class="step-desc">Chaque sac est inspecté : coutures, solidité des anses, finitions. Il est ensuite plié et étiqueté avant distribution.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SECTION 4 : DONNÉES ENVIRONNEMENTALES -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">4</div>
+      <h2 class="section-title">Impact environnemental</h2>
+    </div>
+    <div class="eco-grid">
+      <div class="eco-card">
+        <div class="eco-number">~2 kg</div>
+        <div class="eco-label">de déchets évités<br>par sac produit</div>
+      </div>
+      <div class="eco-card">
+        <div class="eco-number">0</div>
+        <div class="eco-label">matière première<br>neuve utilisée</div>
+      </div>
+      <div class="eco-card">
+        <div class="eco-number">100%</div>
+        <div class="eco-label">fabrication locale<br>en atelier</div>
+      </div>
+    </div>
+    <div style="margin-top:16px; background: var(--light-olive); border-radius: 12px; padding: 20px 24px;">
+      <p style="font-size: 14px; line-height: 1.7; color: var(--dark);">
+        En choisissant ce tote bag, vous contribuez directement au détournement de matières qui auraient autrement été incinérées ou enfouies. Chaque sac raconte une histoire différente : les couleurs et motifs visibles sont ceux d'une ancienne campagne publicitaire — <strong>aucun sac n'est identique</strong>.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <strong>[Nom de votre structure]</strong>
+  Atelier de fabrication — [Ville, Code postal]<br>
+  Contact : contact@votrestructure.fr
+</footer>
+
+</body>
+</html>
